@@ -1,3 +1,13 @@
 h1, h2 {
   font-family: Lato;
 }
+
+
+@media print {
+
+    @page {size: A4 landscape; }
+
+    /* use width if in portrait (use the smaller size to try 
+       and prevent image from overflowing page... */
+    img { height: 90%; margin: 0; padding: 0; }	
+}
