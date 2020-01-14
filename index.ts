@@ -8,7 +8,7 @@ import { printView } from './printView'
 // const appDiv: HTMLElement = document.getElementById('app');
 // appDiv.innerHTML = `Select a file: `;
 
-document.getElementById('file').addEventListener('change', handleFileSelect, false);
+document.getElementById('file-upload').addEventListener('change', handleFileSelect, false);
 
 
 printView()

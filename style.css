@@ -3,6 +3,12 @@ h1, h2 {
 }
 
 
+input[type=file] {
+  content: ''
+}
+
+
+/* printing styles */
 @media print {
 
     @page {size: A4 landscape; }
