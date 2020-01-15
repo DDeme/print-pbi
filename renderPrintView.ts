@@ -24,10 +24,66 @@ const sampleData: PbiDto[] = [
     featureTitle: 'Sample Title',
     ["Work Item Type"]: ``,
   },
+  {
+    ID: '45678979',
+    Title: 'Implement new fearute',
+    featureID: '4597897',
+    featureTitle: 'Sample Title',
+    ["Work Item Type"]: ``,
+  },
+  {
+    ID: '45678979',
+    Title: 'Implement new fearute',
+    featureID: '4597897',
+    featureTitle: 'Sample Title',
+    ["Work Item Type"]: ``,
+  },
+  {
+    ID: '45678979',
+    Title: 'Implement new fearute',
+    featureID: '4597897',
+    featureTitle: 'Sample Title',
+    ["Work Item Type"]: ``,
+  },
+  {
+    ID: '45678979',
+    Title: 'Implement new fearute',
+    featureID: '4597897',
+    featureTitle: 'Sample Title',
+    ["Work Item Type"]: ``,
+  },
+  {
+    ID: '45678979',
+    Title: 'Implement new fearute',
+    featureID: '4597897',
+    featureTitle: 'Sample Title',
+    ["Work Item Type"]: ``,
+  },
+  {
+    ID: '45678979',
+    Title: 'Implement new fearute',
+    featureID: '4597897',
+    featureTitle: 'Sample Title',
+    ["Work Item Type"]: ``,
+  },
+  {
+    ID: '45678979',
+    Title: 'Implement new fearute',
+    featureID: '4597897',
+    featureTitle: 'Sample Title',
+    ["Work Item Type"]: ``,
+  },
+  {
+    ID: '45678979',
+    Title: 'Implement new fearute',
+    featureID: '4597897',
+    featureTitle: 'Sample Title',
+    ["Work Item Type"]: ``,
+  },
 ]
 
 
-export const renderCards = (): string => sampleData.map(makeItem).join('')
+export const renderCards = (): string => dataLoop(sampleData)
 
 
 
@@ -44,7 +100,7 @@ const makeItem = (item:PbiDto): string =>
 				<div class="fTitle">${item.featureTitle}</div>
 		</div>`
 
-const dataLoop = (items) => 
+const dataLoop = (items: PbiDto[]) => 
 	`<div class="grid-container">${items.map(makeItem).join('')}</div>`
 
 

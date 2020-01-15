@@ -21,7 +21,7 @@ const main = () => {
   }
   document.getElementById('file-upload').addEventListener('change', handleFileSelect, false);
   
-  renderPrintView()
+  //renderPrintView()
   printView()
 }
 
