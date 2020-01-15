@@ -8,13 +8,31 @@ import { isBrowserSupported } from './isBrowserSupported'
 // const appDiv: HTMLElement = document.getElementById('app');
 // appDiv.innerHTML = `Select a file: `;
 
-document.getElementById('file-upload').addEventListener('change', handleFileSelect, false);
+
+
+const main = () => {
+  // checking browser support
+  if (isBrowserSupported()) {
+    document.querySelector('#app').classList.remove('hidden')
+  }
+  else {
+    document.querySelector('#unsupported').classList.remove('hidden')
+  }
+
+
+  document.getElementById('file-upload').addEventListener('change', handleFileSelect, false);
+  printView()
+}
+
+// run main on dom load (ready)
+//window.addEventListener('load', main)
+
+main()
 
 
 
-isBrowserSupported()
 
-printView()
+
 
 
 
