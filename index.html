@@ -1,30 +1,27 @@
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
 
-<div id="app" class="bg-gray-200 min-h-screen">
+<div id="app" class="bg-gray-200 min-h-screen app">
   <div class="flex flex-wrap">
     <div class="ml-auto mr-auto bg-gray-100 rounded shadow-lg">
-      <div class="bg-cover h-20 opacity-50" style="background-image: url(https://images.unsplash.com/photo-1466854076813-4aa9ac0fc347?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80); background-position: 0px -20px"></div>
+      <div class="bg-cover h-20 pt-5" style="background-image: url(https://images.unsplash.com/photo-1466854076813-4aa9ac0fc347?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80); background-position: 0px -20px">
+      <h1 class="font-bold text-xl mr-10 ml-10"> Print PBIs</h1>
+      </div>
       <div class="mb-5 mt-5 mr-10 ml-10">
 
     
-      <h1 class="font-bold text-xl mb-5"> Print PBIs</h1>
-      <p>Upload exported file from azure query</p>
+      <p class="mb-5">Upload exported csv file from azure query</p>
       <form>
-        <label for="file-upload" class="bg-blue-500 w-full hover:bg-blue-700 text-white py-2 px-4 rounded">
-           Select .csv file
+        <label for="file-upload" class="bg-blue-700 w-full hover:bg-blue-400 text-white py-2 px-4 rounded flex text-center uppercase font-bold pl-auto pr-auto">
+           <span>Select file</span>
         </label>
       </label>
         <input type="file" class="hidden" id="file-upload" >
       </form>
       </div>
     </div>
+  </div>
 </div>
 
 
-
-
-
-
-<button >
-</button>
+<div class="print">content for print</div>

@@ -8,9 +8,22 @@ input[type=file] {
 }
 
 
-/* printing styles */
-@media print {
+@media only screen {
+  .print {
+    display: none;
+  }
+}
 
+
+
+/* printing styles */
+@media only print {
+    .app {
+      display: none;
+    }
+    .print {
+      display: initial;
+    }
     @page {size: A4 landscape; }
 
     /* use width if in portrait (use the smaller size to try 
