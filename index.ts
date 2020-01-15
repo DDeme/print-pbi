@@ -19,10 +19,11 @@ const main = () => {
   else {
     document.querySelector('#unsupported').classList.remove('hidden')
   }
+  document.getElementById('print').addEventListener('click', printView, false);
   document.getElementById('file-upload').addEventListener('change', handleFileSelect, false);
   
   //renderPrintView()
-  printView()
+  // printView()
 }
 
 // run main on dom load (ready)

@@ -3,7 +3,7 @@
 
 
 export const printView = (): void => {
-  // window.print()
+   window.print()
 }
 
 
