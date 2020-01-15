@@ -1,8 +1,42 @@
-export const renderCards = () => {
-  
+const csv = ``
+
+
+interface PbiDto {
+  ID: string,
+  Title: string,
+  featureID: string,
+  featureTitle: string,
+  ["Work Item Type"]: string,
 }
 
-const makeItem = (item) => 
+const sampleData: PbiDto[] = [
+  {
+    ID: '45678979',
+    Title: 'Implement new fearute',
+    featureID: '4597897',
+    featureTitle: 'Sample Title',
+    ["Work Item Type"]: ``,
+  },
+  {
+    ID: '45678979',
+    Title: 'Implement new fearute',
+    featureID: '4597897',
+    featureTitle: 'Sample Title',
+    ["Work Item Type"]: ``,
+  },
+]
+
+
+export const renderCards = (): string => sampleData.map(makeItem).join('')
+
+
+
+export const renderPrintView = () => {
+  const printElement = document.querySelector('#print')
+  printElement.innerHTML = renderCards()
+}
+
+const makeItem = (item:PbiDto): string => 
 		`<div class="grid-item">
 				<div class="Id">${item.ID}</div>
 				<div class="Title">${item.Title}</div>
@@ -18,11 +52,9 @@ const generateHtml = (items) => dataLoop(items)
 
 
 const addFeatureTag = (data: any) => {
-	//data.filter(data => ['Product Backlog Item', ].includes(data['']) )
 	let remeberedId = ``
 	let remeberedTitle = ''
 	return data.map(item => {
-
 		if(item["Work Item Type"] === `Feature`){
 			remeberedId = item.ID
 			remeberedTitle = item.Title
@@ -32,9 +64,6 @@ const addFeatureTag = (data: any) => {
 			item.featureID = remeberedId
 			item.featureTitle = remeberedTitle
 		}
-
-	//	remeberedId =  item["Work Item Type"] === `Feature` ? item.ID : remeberedId
-	
 		return item
 	})
 }
