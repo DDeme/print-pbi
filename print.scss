@@ -1,0 +1,60 @@
+$page-margin: 5mm;
+$card-margin: 5mm;
+
+@media only print {
+    .app {
+      display: none;
+    }
+    .print {
+      display: initial;
+    }
+
+    .page-canvas {
+       height: 200mm;
+       width: 287mm;
+       page-break-after: always;
+    }
+
+    @page {
+      size: A4 landscape; 
+      margin: 5mm;
+    }
+
+    %cuttinBorder {
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .row {
+      @extend %cuttinBorder;
+      &:nth-child(3) {
+        border: none;
+      }
+      border-bottom-width: .5mm;
+      height: calc(100% / 3);
+    }
+
+    .id {
+      font-weight: bold;
+      font-size: 1.5rem;
+      display:block;
+    }
+
+    .title {
+      @extend .id;
+      font-size: 1rem;
+    }
+
+    .grid {
+      @extend %cuttinBorder;
+      &:nth-child(3) {
+        border: none;
+      }
+      border-right-width: .5mm;
+      padding: 5mm;  
+      height: 100%;
+      overflow: hidden;
+      width: calc(100% /3);
+      float: left;
+    }
+}

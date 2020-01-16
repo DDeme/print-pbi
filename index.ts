@@ -1,5 +1,5 @@
 // Import stylesheets
-import './style.css';
+import './style.scss';
 
 import {handleFileSelect} from './handleFileLoad'
 import { printView } from './printView'
@@ -19,10 +19,10 @@ const main = () => {
   else {
     document.querySelector('#unsupported').classList.remove('hidden')
   }
-  document.getElementById('print').addEventListener('click', printView, false);
+  document.getElementById('print-btn').addEventListener('click', printView, false);
   document.getElementById('file-upload').addEventListener('change', handleFileSelect, false);
   
-  //renderPrintView()
+  renderPrintView()
   // printView()
 }
 
@@ -30,11 +30,3 @@ const main = () => {
 //window.addEventListener('load', main)
 
 main()
-
-
-
-
-
-
-
-
