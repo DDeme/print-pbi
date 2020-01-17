@@ -86,15 +86,31 @@ const sampleData: PbiDto[] = [
 export const renderCards = (): string => dataLoop(sampleData)
 
 
-export const recursiveWrapper = (items: string[], numOfItems: number, openTag = '<div>', closingTag= '</div>'): string[] => {
-  
 
-  return items.reduce(item => {})
+type RecursiveWrapperAccumulator = [string[], string]
 
+export const recursiveWrapper = (items: string[], numOfItems: number, openTag = `<div>`, closingTag = `</div>`): string[] => {
+  return items.reduce((acc: RecursiveWrapperAccumulator, item,i) => {
+    
+    if (i % numOfItems === 0) {
+      acc[1] += openTag
+    }
+    acc[1] += item 
 
-
-
+    if (i % numOfItems + 1 === numOfItems || i + 1  === items.length ) {
+      acc[1] += closingTag
+      acc[0].push(acc[1])
+      acc[1] === ``
+    }
+    return acc
+  }, [[], ``])[0]
 }
+
+
+
+// render row 
+
+// rednder page
 
 
 
