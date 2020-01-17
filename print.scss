@@ -53,10 +53,20 @@ $rows-per-page: 3;
     .id {
       font-weight: bold;
       font-size: 1.5rem;
+      word-wrap: break-word;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .title {
       @extend .id;
       font-size: 1rem;
+      min-height:  calc(100% - 1.5rem - 2 * 0.8rem)
     }
+
+    .feature-text {
+      font-size: 0.8rem;
+    }
+
 }
