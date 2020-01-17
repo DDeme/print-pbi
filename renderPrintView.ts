@@ -31,8 +31,8 @@ const renderItem = (item:PbiDto): string =>
 		`<div class="item">
 				<div class="id">${item.ID}</div>
 				<div class="title">${item.Title}</div>
-				<div class="fid">${item.featureID}</div>
-				<div class="ftitle">${item.featureTitle}</div>
+				<div class="feature-text">${item.featureID}</div>
+				<div class="feature-text">${item.featureTitle}</div>
 		</div>`
 
 // render row 

@@ -50,23 +50,41 @@ $rows-per-page: 3;
       float: left;
     }
 
-    .id {
-      font-weight: bold;
-      font-size: 1.5rem;
+
+    %item-text {
       word-wrap: break-word;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    .title {
-      @extend .id;
-      font-size: 1rem;
-      min-height:  calc(100% - 1.5rem - 2 * 0.8rem)
+    .id {
+      @extend %item-text;
+      font-weight: bold;
+      font-size: 1.5rem;      
     }
 
+    .title {
+      @extend .id;
+      font-size: 1rem; 
+      white-space: normal;
+      display: block;
+      display: -webkit-box;
+      max-width: 100%;
+      margin: 0 auto;
+      line-height: 1;
+      -webkit-line-clamp: 7;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: calc(7 * 1rem);
+      margin-bottom: 0.5rem;
+    }
+    
+
     .feature-text {
-      font-size: 0.8rem;
+      @extend %item-text;
+      font-size: 1rem;
     }
 
 }
