@@ -1,7 +1,4 @@
-const csv = ``
-
-
-interface PbiDto {
+export interface PbiDto {
   ID: string,
   Title: string,
   featureID: string,
@@ -9,145 +6,50 @@ interface PbiDto {
   ["Work Item Type"]: string,
 }
 
-const sampleData: PbiDto[] = [
-  {
-    ID: '45678979',
-    Title: 'Implement new fearute',
-    featureID: '4597897',
-    featureTitle: 'Sample Title',
-    ["Work Item Type"]: ``,
-  },
-  {
-    ID: '45678979',
-    Title: 'Implement new fearute',
-    featureID: '4597897',
-    featureTitle: 'Sample Title',
-    ["Work Item Type"]: ``,
-  },
-  {
-    ID: '45678979',
-    Title: 'Implement new fearute',
-    featureID: '4597897',
-    featureTitle: 'Sample Title',
-    ["Work Item Type"]: ``,
-  },
-  {
-    ID: '45678979',
-    Title: 'Implement new fearute',
-    featureID: '4597897',
-    featureTitle: 'Sample Title',
-    ["Work Item Type"]: ``,
-  },
-  {
-    ID: '45678979',
-    Title: 'Implement new fearute',
-    featureID: '4597897',
-    featureTitle: 'Sample Title',
-    ["Work Item Type"]: ``,
-  },
-  {
-    ID: '45678979',
-    Title: 'Implement new fearute',
-    featureID: '4597897',
-    featureTitle: 'Sample Title',
-    ["Work Item Type"]: ``,
-  },
-  {
-    ID: '45678979',
-    Title: 'Implement new fearute',
-    featureID: '4597897',
-    featureTitle: 'Sample Title',
-    ["Work Item Type"]: ``,
-  },
-  {
-    ID: '45678979',
-    Title: 'Implement new fearute',
-    featureID: '4597897',
-    featureTitle: 'Sample Title',
-    ["Work Item Type"]: ``,
-  },
-  {
-    ID: '45678979',
-    Title: 'Implement new fearute',
-    featureID: '4597897',
-    featureTitle: 'Sample Title',
-    ["Work Item Type"]: ``,
-  },
-  {
-    ID: '45678979',
-    Title: 'Implement new fearute',
-    featureID: '4597897',
-    featureTitle: 'Sample Title',
-    ["Work Item Type"]: ``,
-  },
-]
-
-
-export const renderCards = (): string => dataLoop(sampleData)
-
-
-
 type RecursiveWrapperAccumulator = [string[], string]
 
-export const recursiveWrapper = (items: string[], numOfItems: number, openTag = `<div>`, closingTag = `</div>`): string[] => {
-  return items.reduce((acc: RecursiveWrapperAccumulator, item,i) => {
-    
+export const recursiveWrapper = (numOfItems: number, openTag = `<div>`, closingTag = `</div>`) => (items: string[]): string[] => {
+  const rendered = items.reduce((acc: RecursiveWrapperAccumulator, item,i) => {
     if (i % numOfItems === 0) {
       acc[1] += openTag
     }
-    acc[1] += item 
+      acc[1] += item 
 
-    if (i % numOfItems + 1 === numOfItems || i + 1  === items.length ) {
+    if (i % numOfItems === (numOfItems - 1 ) || i  === items.length - 1 ) {
       acc[1] += closingTag
       acc[0].push(acc[1])
       acc[1] === ``
     }
+    
     return acc
   }, [[], ``])[0]
+
+
+  debugger
+  return rendered
 }
-
-
-
-// render row 
-
-// rednder page
-
-
-
-export const renderPrintView = () => {
-  const printElement = document.querySelector('#print')
-  printElement.innerHTML = renderCards()
-}
-
-const makeItem = (item:PbiDto): string => 
-		`<div class="grid-item">
-				<div class="Id">${item.ID}</div>
-				<div class="Title">${item.Title}</div>
-				<div class="fId">${item.featureID}</div>
-				<div class="fTitle">${item.featureTitle}</div>
+// render item
+const renderItem = (item:PbiDto): string => 
+		`<div class="item">
+				<div class="id">${item.ID}</div>
+				<div class="title">${item.Title}</div>
+				<div class="fid">${item.featureID}</div>
+				<div class="ftitle">${item.featureTitle}</div>
 		</div>`
 
-const dataLoop = (items: PbiDto[]) => 
-	`<div class="grid-container">${items.map(makeItem).join('')}</div>`
+// render row 
+const renderRows = recursiveWrapper(3, `<div class="row">`)
 
+// rednder page
+const renderPages = recursiveWrapper(3, `<div class="canvas">`)
 
-const generateHtml = (items) => dataLoop(items)
+// generateHtml
+const generateHtml = (items: PbiDto[]): string => renderPages(renderRows(items.map(renderItem))).join(``)
 
-
-const addFeatureTag = (data: any) => {
-	let remeberedId = ``
-	let remeberedTitle = ''
-	return data.map(item => {
-		if(item["Work Item Type"] === `Feature`){
-			remeberedId = item.ID
-			remeberedTitle = item.Title
-			item.featureID = ''
-			item.featureTitle = ''
-		} else {
-			item.featureID = remeberedId
-			item.featureTitle = remeberedTitle
-		}
-		return item
-	})
+export const renderPrintView = (items: PbiDto[], selector = '#print'): void => {
+  const printElement = document.querySelector(selector)
+  const rows = renderRows(items.map(renderItem))
+  const pages = renderPages(rows)
+  printElement.innerHTML = generateHtml(items)
 }
 

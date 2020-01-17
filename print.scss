@@ -14,9 +14,10 @@ $rows-per-page: 3;
       display: initial;
     }
 
-    .page-canvas {
+    .canvas {
        height: 200mm;
        width: 287mm;
+       overflow: hidden;
        page-break-after: always;
     }
 
@@ -39,18 +40,7 @@ $rows-per-page: 3;
       height: calc(100% / 3);
     }
 
-    .id {
-      font-weight: bold;
-      font-size: 1.5rem;
-      display: block;
-    }
-
-    .title {
-      @extend .id;
-      font-size: 1rem;
-    }
-
-    .grid {
+    .item {
       @extend %cuttinBorder;
       &:nth-child(3) {
         border: none;
@@ -62,4 +52,16 @@ $rows-per-page: 3;
       overflow: hidden;
       float: left;
     }
+
+    .id {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    .title {
+      @extend .id;
+      font-size: 1rem;
+    }
+
+    
 }
