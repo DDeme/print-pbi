@@ -1,5 +1,5 @@
 // Import stylesheets
-import './style.scss';
+import './main.scss';
 
 import {handleFileSelect} from './handleFileLoad'
 import { printView } from './printView'

@@ -86,6 +86,17 @@ const sampleData: PbiDto[] = [
 export const renderCards = (): string => dataLoop(sampleData)
 
 
+export const recursiveWrapper = (items: string[], numOfItems: number, openTag = '<div>', closingTag= '</div>'): string[] => {
+  
+
+  return items.reduce(item => {})
+
+
+
+
+}
+
+
 
 export const renderPrintView = () => {
   const printElement = document.querySelector('#print')

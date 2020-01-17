@@ -1,5 +1,10 @@
 $page-margin: 5mm;
-$card-margin: 5mm;
+$card-padding: 5mm;
+$cutting-border-width: .5mm;
+$cutting-border-style: dotted;
+$cutting-border-color: grey;
+$cards-per-row: 3;
+$rows-per-page: 3;
 
 @media only print {
     .app {
@@ -17,12 +22,12 @@ $card-margin: 5mm;
 
     @page {
       size: A4 landscape; 
-      margin: 5mm;
+      margin: $page-margin;
     }
 
     %cuttinBorder {
-      border-style: dotted;
-      border-color: gray;
+      border-style: $cutting-border-style;
+      border-color: $cutting-border-color;
     }
 
     .row {
@@ -30,14 +35,14 @@ $card-margin: 5mm;
       &:nth-child(3) {
         border: none;
       }
-      border-bottom-width: .5mm;
+      border-bottom-width: $cutting-border-width;
       height: calc(100% / 3);
     }
 
     .id {
       font-weight: bold;
       font-size: 1.5rem;
-      display:block;
+      display: block;
     }
 
     .title {
@@ -50,11 +55,11 @@ $card-margin: 5mm;
       &:nth-child(3) {
         border: none;
       }
-      border-right-width: .5mm;
-      padding: 5mm;  
+      padding: $card-padding;  
+      border-right-width: $cutting-border-width;
       height: 100%;
-      overflow: hidden;
       width: calc(100% /3);
+      overflow: hidden;
       float: left;
     }
 }
