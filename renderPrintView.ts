@@ -7,7 +7,6 @@ export interface PbiDto {
 }
 
 type RecursiveWrapperAccumulator = [string[], string]
-
 export const recursiveWrapper = (numOfItems: number, openTag = `<div>`, closingTag = `</div>`) => (items: string[]): string[] => {
   const rendered = items.reduce((acc: RecursiveWrapperAccumulator, item,i) => {
     if (i % numOfItems === 0) {
@@ -18,16 +17,15 @@ export const recursiveWrapper = (numOfItems: number, openTag = `<div>`, closingT
     if (i % numOfItems === (numOfItems - 1 ) || i  === items.length - 1 ) {
       acc[1] += closingTag
       acc[0].push(acc[1])
-      acc[1] === ``
+      acc[1] = ``
     }
     
     return acc
   }, [[], ``])[0]
 
-
-  debugger
   return rendered
 }
+
 // render item
 const renderItem = (item:PbiDto): string => 
 		`<div class="item">
@@ -48,8 +46,6 @@ const generateHtml = (items: PbiDto[]): string => renderPages(renderRows(items.m
 
 export const renderPrintView = (items: PbiDto[], selector = '#print'): void => {
   const printElement = document.querySelector(selector)
-  const rows = renderRows(items.map(renderItem))
-  const pages = renderPages(rows)
   printElement.innerHTML = generateHtml(items)
 }
 
