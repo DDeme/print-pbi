@@ -19,10 +19,9 @@ $row-in-title: 7;
     }
 
     .canvas {
-       height: 200mm;
-       width: 287mm;
+       height: calc( 210mm - 2 * #{$page-margin});
+       width: calc( 297mm - 2 * #{$page-margin});
        overflow: hidden;
-       page-break-after: always;
     }
 
     @page {
