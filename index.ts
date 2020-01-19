@@ -80,13 +80,14 @@ const sampleData: PbiDto[] = [
 ]
 
 const main = () => {
-  // checking browser support
+  // checking for browser support
   if (isBrowserSupported()) {
     document.querySelector('#app').classList.remove('hidden')
   }
   else {
     document.querySelector('#unsupported').classList.remove('hidden')
   }
+  
   document.getElementById('print-btn').addEventListener('click', printView, false);
   document.getElementById('file-upload').addEventListener('change', handleFileSelect, false);
   
