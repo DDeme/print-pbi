@@ -44,7 +44,7 @@ const renderPages = recursiveWrapper(3, `<div class="canvas">`)
 // generateHtml
 const generateHtml = (items: PbiDto[]): string => renderPages(renderRows(items.map(renderItem))).join(``)
 
-export const renderPrintView = (items: PbiDto[], selector = '#print'): void => {
+export const renderPrintView = (items: PbiDto[],  selector = '#print'): void => {
   const printElement = document.querySelector(selector)
   printElement.innerHTML = generateHtml(items)
 }
