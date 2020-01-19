@@ -19,36 +19,43 @@ $row-in-title: 7;
     }
 
     .canvas {
-       height: calc( 210mm - 2 * #{$page-margin});
-       width: calc( 297mm - 2 * #{$page-margin});
-       overflow: hidden;
+      height: calc(210mm - 2mm - 2 * #{$page-margin});
+      width: calc(297mm - 2 * #{$page-margin});
+      overflow: hidden;
+      page-break-after: always;
+      margin: 0;
+      padding: 0;
     }
 
     @page {
-      size: $page-size $page-orientation; 
+      size: A4 landscape; 
       margin: $page-margin;
     }
 
     %cuttinBorder {
       border-style: $cutting-border-style;
       border-color: $cutting-border-color;
-      &:last-child {
-        border: none;
-      }
+      
     }
-
     .row {
       @extend %cuttinBorder;
-      border-bottom-width: $cutting-border-width;
-      height: calc(100% / #{$rows-per-page} - #{$cutting-border-width} * #{$rows-per-page - 1} );
+      height: calc( 100% / 3);
+      &:last-child .item {
+        border-bottom-width: 0;
+      }
     }
 
     .item {
       @extend %cuttinBorder;
       padding: $card-padding;  
       border-right-width: $cutting-border-width;
+      border-bottom-width: $cutting-border-width;
+      &:last-child {
+        border-right-width: 0;
+      }
+      background: green;
       height: 100%;
-      width: calc(100% / #{$items-per-row});
+      width: calc( 100% / #{$items-per-row});
       overflow: hidden;
       float: left;
     }
