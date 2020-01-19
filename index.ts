@@ -88,7 +88,7 @@ const main = () => {
     document.querySelector('#unsupported').classList.remove('hidden')
   }
   
-  document.getElementById('print-btn').addEventListener('click', printView, false);
+  document.getElementById('print-btn').addEventListener('click', ()=> printView(window), false);
   document.getElementById('file-upload').addEventListener('change', handleFileSelect, false);
   
   renderPrintView(sampleData)
