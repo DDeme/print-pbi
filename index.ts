@@ -91,7 +91,7 @@ const main = () => {
   document.getElementById('print-btn').addEventListener('click', ()=> printView(window), false);
   document.getElementById('file-upload').addEventListener('change', handleFilesSelect, false);
   
-  renderPrintView(sampleData)
+  // renderPrintView(sampleData)
   // printView()
 }
 
