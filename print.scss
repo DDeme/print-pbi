@@ -5,6 +5,8 @@ $cutting-border-style: dotted;
 $cutting-border-color: grey;
 $items-per-row: 3;
 $rows-per-page: 3;
+$page-orientation: landscape;
+$page-size: A4;
 
 @media only print {
     .app {
@@ -22,7 +24,7 @@ $rows-per-page: 3;
     }
 
     @page {
-      size: A4 landscape; 
+      size: $page-size $page-orientation; 
       margin: $page-margin;
     }
 

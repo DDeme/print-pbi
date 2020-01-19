@@ -5,10 +5,6 @@ import {handleFileSelect} from './handleFileLoad'
 import { printView } from './printView'
 import { isBrowserSupported } from './isBrowserSupported'
 import { renderPrintView, PbiDto } from './renderPrintView'
-// Write TypeScript code!
-// const appDiv: HTMLElement = document.getElementById('app');
-// appDiv.innerHTML = `Select a file: `;
-
 
 const sampleData: PbiDto[] = [
   {
