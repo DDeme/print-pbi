@@ -1,7 +1,7 @@
 // Import stylesheets
 import './main.scss';
 
-import {handleFileSelect} from './handleFileLoad'
+import {handleFilesSelect} from './handleFilesSelect'
 import { printView } from './printView'
 import { isBrowserSupported } from './isBrowserSupported'
 import { renderPrintView, PbiDto } from './renderPrintView'
@@ -89,7 +89,7 @@ const main = () => {
   }
   
   document.getElementById('print-btn').addEventListener('click', ()=> printView(window), false);
-  document.getElementById('file-upload').addEventListener('change', handleFileSelect, false);
+  document.getElementById('file-upload').addEventListener('change', handleFilesSelect, false);
   
   renderPrintView(sampleData)
   // printView()

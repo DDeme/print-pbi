@@ -27,7 +27,6 @@ export const readFilesAsText = async (files: FileList): Promise<string[]> => {
     
     const filesResults: string[] = await Promise.all(readFuncs.map(f => f()))
 
-    console.log(filesResults)
     if (filesResults.length === 0) {
       throw new Error(`No files selected`)
     }
