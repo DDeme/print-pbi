@@ -8,6 +8,8 @@ $rows-per-page: 3;
 $page-orientation: landscape;
 $page-size: A4;
 $row-in-title: 7;
+
+
 @media only print {
     .app {
       display: none;
@@ -39,7 +41,7 @@ $row-in-title: 7;
     .row {
       @extend %cuttinBorder;
       border-bottom-width: $cutting-border-width;
-      height: calc(100% / #{$rows-per-page});
+      height: calc(100% / #{$rows-per-page} - #{$cutting-border-width} * #{$rows-per-page - 1} );
     }
 
     .item {
@@ -79,7 +81,7 @@ $row-in-title: 7;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-      height: calc($row-in-title * 1rem);
+      height: calc(#{$row-in-title} * 1rem);
       margin-bottom: 0.5rem;
     }
     
