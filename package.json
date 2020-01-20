@@ -21,7 +21,6 @@
   "devDependencies": {
     "cross-env": "^5.2.0",
     "gh-pages": "^1.2.0",
-    "parcel-bundler": "^1.12.4",
-    "sass": "^1.25.0"
+    "parcel-bundler": "^1.12.4"
   }
 }
