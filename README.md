@@ -2,10 +2,6 @@
 
 
 
-# App for printing azure PBI 
+# App for printing azure PBI's  
 
 
-
-# typescript-e1vny8
-
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/typescript-e1vny8)
