@@ -1,0 +1,94 @@
+$page-margin: 5mm;
+$card-padding: 5mm;
+$cutting-border-width: 0.5mm;
+$cutting-border-style: dotted;
+$cutting-border-color: grey;
+$items-per-row: 3;
+$rows-per-page: 3;
+$page-orientation: landscape;
+$page-size: A4;
+$row-in-title: 7;
+
+@media only print {
+  .app {
+    display: none;
+  }
+  .print {
+    display: initial;
+  }
+
+  .canvas {
+    height: calc(210mm - 2mm - 2 * #{$page-margin});
+    width: calc(297mm - 2 * #{$page-margin});
+    overflow: hidden;
+    page-break-after: always;
+    margin: 0;
+    padding: 0;
+  }
+
+  @page {
+    size: A4 landscape;
+    margin: $page-margin;
+  }
+
+  %cuttinBorder {
+    border-style: $cutting-border-style;
+    border-color: $cutting-border-color;
+  }
+  .row {
+    @extend %cuttinBorder;
+    height: calc(100% / 3);
+    &:last-child .item {
+      border-bottom-width: 0;
+    }
+  }
+
+  .item {
+    @extend %cuttinBorder;
+    padding: $card-padding;
+    border-right-width: $cutting-border-width;
+    border-bottom-width: $cutting-border-width;
+    &:last-child {
+      border-right-width: 0;
+    }
+    height: 100%;
+    width: calc(100% / #{$items-per-row});
+    overflow: hidden;
+    float: left;
+  }
+
+  %item-text {
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .id {
+    @extend %item-text;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  .title {
+    @extend .id;
+    font-size: 1rem;
+    white-space: normal;
+    display: block;
+    display: -webkit-box;
+    max-width: 100%;
+    margin: 0 auto;
+    line-height: 1;
+    -webkit-line-clamp: $row-in-title;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: calc(#{$row-in-title} * 1rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-text {
+    @extend %item-text;
+    font-size: 1rem;
+  }
+}

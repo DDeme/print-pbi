@@ -1,5 +1,5 @@
 import {readFilesAsText} from './readFilesAsText'
-import csvtojson from 'csvtojson'
+import  * as csvtojson from 'csvtojson'
 import { renderPrintView, PbiDto } from './renderPrintView'
 import { printView } from './printView'
 

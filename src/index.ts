@@ -1,10 +1,10 @@
 // Import stylesheets
-import './main.scss';
+// import './main.scss';
 
-import {handleFilesSelect} from './handleFilesSelect'
+import { handleFilesSelect } from './handleFilesSelect'
 import { printView } from './printView'
 import { isBrowserSupported } from './isBrowserSupported'
-import { renderPrintView, PbiDto } from './renderPrintView'
+import { PbiDto } from './renderPrintView'
 
 const sampleData: PbiDto[] = [
   {
