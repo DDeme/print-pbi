@@ -19,14 +19,18 @@ jobs:
     steps:
       - checkout
 
+      - run:
+          name: Install and configure dependencies
+          command: |
+            git config user.email "ci-build@printpbi.com"
+            git config user.name "ci-build"
+
       # Download and cache dependencies
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "./yarn.lock" }}
           # fallback to using the latest cache if no exact match is found
           # - v1-dependencies-
-       
-      # - run: [ -f *.gz ] && ls -l | grep *.gz | awk '{print $9}' | xargs -r tar -xzvpf || echo "No cached files to extract"
 
       - run: yarn install
       - save_cache:
