@@ -19,12 +19,6 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: Install and configure dependencies
-          command: |
-            git config user.email "ci-build@printpbi.com"
-            git config user.name "ci-build"
-
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -43,5 +37,10 @@ jobs:
           path: ./dist/
           destination: dist
 
-      # run fether
-      - run: yarn deploy
+      # deploy
+      - run:
+          name: Deploy to github
+          command: |
+            git config user.email "ci-build@printpbi.com"
+            git config user.name "ci-build"
+            yarn deploy
