@@ -28,14 +28,15 @@ jobs:
 
       - run: yarn install
       - run: yarn predeploy
+      - run: tar -czpf dist.tar.gz dist
       - save_cache:
           paths:
             - ./node_modules/
           key: v1-dependencies-{{ checksum "./yarn.lock" }}
         
       - store_artifacts:
-          path: ./dist/
-          destination: dist
+          path: ./dist.tar.gz
+          destination: ./
 
       # deploy
       - run:
