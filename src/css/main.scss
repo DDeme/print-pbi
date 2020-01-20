@@ -13,4 +13,8 @@
   margin-top: 0.4rem;
 }
 
+.hover-pointer:hover {
+  cursor: pointer;
+}
+
 @import "./print.scss";
