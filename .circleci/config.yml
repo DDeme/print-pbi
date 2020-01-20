@@ -41,6 +41,6 @@ jobs:
       - run:
           name: Deploy to github
           command: |
-            git config user.email "ci-build@printpbi.com"
-            git config user.name "ci-build"
+            git config --global user.email "ci-build@printpbi.com"
+            git config --global user.name "ci-build"
             yarn deploy
