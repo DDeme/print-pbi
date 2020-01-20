@@ -1,6 +1,3 @@
-// Import stylesheets
-// import './main.scss';
-
 import { handleFilesSelect } from './handleFilesSelect'
 import { printView } from './printView'
 import { isBrowserSupported } from './isBrowserSupported'
@@ -81,21 +78,24 @@ const sampleData: PbiDto[] = [
 
 const main = () => {
   // checking for browser support
+
+  const app = document.getElementById('app') as HTMLElement;
+  const unsupported = document.getElementById('unsupported') as HTMLElement;
+  const printButton = document.getElementById('print-btn') as HTMLElement;
+  const fileUpload = document.getElementById('file-upload') as HTMLElement;
+  const printContainer = document.getElementById('print') as HTMLElement;
+  
   if (isBrowserSupported()) {
-    document.querySelector('#app').classList.remove('hidden')
+    app.classList.remove('hidden')
   }
   else {
-    document.querySelector('#unsupported').classList.remove('hidden')
+    unsupported.classList.remove('hidden')
   }
   
-  document.getElementById('print-btn').addEventListener('click', ()=> printView(window), false);
-  document.getElementById('file-upload').addEventListener('change', handleFilesSelect, false);
+  printButton.addEventListener('click', () => printView(window), false);
+  fileUpload.addEventListener('change', handleFilesSelect(printContainer), false);
   
-  // renderPrintView(sampleData)
-  // printView()
 }
 
-// run main on dom load (ready)
-//window.addEventListener('load', main)
 
 main()

@@ -38,5 +38,9 @@ jobs:
             - ./node_modules/
           key: v1-dependencies-{{ checksum "./yarn.lock" }}
         
+      - store_artifacts:
+          path: /dist/
+          destination: dist
+
       # run fether
       - run: yarn deploy

@@ -44,8 +44,31 @@ const renderPages = recursiveWrapper(3, `<div class="canvas">`)
 // generateHtml
 const generateHtml = (items: PbiDto[]): string => renderPages(renderRows(items.map(renderItem))).join(``)
 
-export const renderPrintView = (items: PbiDto[],  selector = '#print'): void => {
-  const printElement = document.querySelector(selector)
-  printElement.innerHTML = generateHtml(items)
+const addFeatureTag = (data: PbiDto[]): PbiDto[] => {
+	//data.filter(data => ['Product Backlog Item', ].includes(data['']) )
+	let remeberedId = ``
+	let remeberedTitle = ''
+	return data.map(item => {
+
+		if(item["Work Item Type"] === `Feature`){
+			remeberedId = item.ID
+			remeberedTitle = item.Title
+			item.featureID = ''
+			item.featureTitle = ''
+		} else {
+			item.featureID = remeberedId
+			item.featureTitle = remeberedTitle
+		}
+
+	//	remeberedId =  item["Work Item Type"] === `Feature` ? item.ID : remeberedId
+
+		return item
+	})
+}
+
+
+
+export const renderPrintView = (items: PbiDto[], printContainer: HTMLElement): void => {
+  printContainer.innerHTML = generateHtml(addFeatureTag(items))
 }
 
