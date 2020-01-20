@@ -33,6 +33,7 @@ jobs:
           # - v1-dependencies-
 
       - run: yarn install
+      - run: yarn predeploy
       - save_cache:
           paths:
             - ./node_modules/
