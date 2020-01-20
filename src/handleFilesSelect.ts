@@ -3,7 +3,7 @@ import  * as csvtojson from 'csvtojson'
 import { renderPrintView } from './renderPrintView'
 import { printView } from './printView'
 
-const parseCsv = async (text: string): Promise<any[]> => csvtojson().fromString(text)
+const parseCsv = async (text: string): Promise<any[]> => csvtojson.csv().fromString(text)
 
 const parseCsvFiles = async (texts: string[]) => {
   const funcs = texts.map((t) => () => parseCsv(t))
