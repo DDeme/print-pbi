@@ -14,7 +14,7 @@ const main = () => {
   // checking for browser support
   if (isBrowserSupported()) {
     printButton.addEventListener('click', () => printView(window), false);
-    fileUpload.addEventListener('change', (e) => handleFilesSelect(e, printContainer), false);
+    fileUpload.addEventListener('change', (e) => handleFilesSelect(e, printContainer, fileUpload), false);
     app.classList.remove('hidden')
   }
   else {
