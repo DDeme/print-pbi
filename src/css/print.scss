@@ -64,14 +64,31 @@ $row-in-title: 7;
     text-overflow: ellipsis;
   }
 
-  .id {
+  %defaultText {
     @extend %item-text;
     font-weight: bold;
     font-size: 1.5rem;
   }
 
-  .title {
+  .main-title {
+    width: 100%;
+    background: grey;
+  }
+
+  .id {
+    @extend %defaultText;
+    width: calc(100% / 2);
+    float: left;
+    text-align: left;
+  }
+
+  .points {
     @extend .id;
+    text-align: right;
+  }
+
+  .title {
+    @extend %defaultText;
     font-size: 1rem;
     white-space: normal;
     display: block;

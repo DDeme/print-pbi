@@ -2,14 +2,12 @@ import { handleFilesSelect } from './handleFilesSelect'
 import { printView } from './printView'
 import { isBrowserSupported } from './isBrowserSupported'
 
-
 const main = () => {
-  
-  const app = document.getElementById('app') as HTMLElement;
-  const unsupported = document.getElementById('unsupported') as HTMLElement;
-  const printButton = document.getElementById('print-btn') as HTMLElement;
-  const fileUpload = document.getElementById('file-upload') as HTMLElement;
-  const printContainer = document.getElementById('print') as HTMLElement;
+  const app = document.getElementById('app') as HTMLElement
+  const unsupported = document.getElementById('unsupported') as HTMLElement
+  const printButton = document.getElementById('print-btn') as HTMLElement
+  const fileUpload = document.getElementById('file-upload') as HTMLInputElement
+  const printContainer = document.getElementById('print') as HTMLElement
   
   // checking for browser support
   if (isBrowserSupported()) {
@@ -20,8 +18,6 @@ const main = () => {
   else {
     unsupported.classList.remove('hidden')
   }
-
 }
-
 
 main()
