@@ -41,7 +41,7 @@ export const recursiveWrapper = (numOfItems: number, openTag = `<div>`, closingT
 // render item
 const renderItem = (item:PbiDto): string => 
 		`<div class="item">
-				<div class="main-title>
+				<div class="main-title">
 					<div class="id">${item.ID}</div>
 					<div class="points">${item[`Story Point Est`]}</div>
 				</div>
