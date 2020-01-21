@@ -39,9 +39,9 @@ jobs:
           destination: ./dist.tar.gz
 
       # deploy
-      - run:
-          name: Deploy to github
-          command: |
-            git config --global user.email "ci-build@printpbi.com"
-            git config --global user.name "ci-build"
-            yarn deploy
+      # - run:
+      #     name: Deploy to github
+      #     command: |
+      #       git config --global user.email "ci-build@printpbi.com"
+      #       git config --global user.name "ci-build"
+      #       yarn deploy
