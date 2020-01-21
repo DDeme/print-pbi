@@ -1,6 +1,6 @@
-import { handleFilesSelect } from './handleFilesSelect'
-import { printView } from './printView'
-import { isBrowserSupported } from './isBrowserSupported'
+import { handleFilesSelect } from './app/handleFilesSelect'
+import { printView } from './app/printView'
+import { isBrowserSupported } from './app/isBrowserSupported'
 
 const main = () => {
   const app = document.getElementById('app') as HTMLElement
