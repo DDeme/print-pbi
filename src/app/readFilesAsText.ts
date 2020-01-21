@@ -17,7 +17,7 @@ export const readFilesAsText = async (files: FileList): Promise<string[]> => {
     // files is a FileList of File objects. List some properties.
     
     const readFuncs = []
-    for (let i = 0, file; file = files[i]; i++) {  
+    for (let i = 0, file: File; file = files[i]; i++) {  
     // Only process csv, excel files.
     // if (!file.type.match('image.*')) {
     //   continue;

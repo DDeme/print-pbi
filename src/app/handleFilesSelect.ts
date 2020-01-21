@@ -2,6 +2,7 @@ import {readFilesAsText} from './readFilesAsText'
 import  * as csvtojson from 'csvtojson'
 import { renderPrintView } from './renderPrintView'
 import { printView } from './printView'
+import { mapCsvToModel } from './mapCsvToModel'
 
 const parseCsv = async (text: string): Promise<any[]> => csvtojson.csv().fromString(text)
 
@@ -26,7 +27,7 @@ export const handleFilesSelect = async(evt: Event, printContainer: HTMLElement, 
   const csvFiles = await parseCsvFiles(textFiles)
   // do validation 
 
-  renderPrintView(csvFiles[0], printContainer)
+  renderPrintView(mapCsvToModel(csvFiles[0]), printContainer)
   printView(window)
   fileUpload.value = ''
   return 

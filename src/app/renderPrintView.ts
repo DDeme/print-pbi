@@ -1,12 +1,3 @@
-export interface PbiDto {
-  	ID: string,
-  	Title: string,
-  	[`Work Item Type`]: string,
-	[`Story Point Est`]: string | number | null,
-	Parent: string | number | null,  
-  	ParentTitle: string,
-}
-
 interface PrintConfig {
 	rowsPerPage: number,
 	itemsPerRow: number,
@@ -38,8 +29,11 @@ export const recursiveWrapper = (numOfItems: number, openTag = `<div>`, closingT
   return rendered
 }
 
+const getParentTitle = (key: string, refObj: App.ReferenceObj): App.BasicValue => 
+	refObj[key]['Title'] ? refObj[key] && refObj[key]['Title'] : `` 
+
 // render item
-const renderItem = (item:PbiDto): string => 
+const renderItem = (item:App.PbiDto, refObj: App.ReferenceObj): string => 
 		`<div class="item">
 				<div class="main-title">
 					<div class="id">${item.ID}</div>
@@ -47,7 +41,7 @@ const renderItem = (item:PbiDto): string =>
 				</div>
 				<div class="title">${item.Title}</div>
 				<div class="feature-text">${item.Parent}</div>
-				<div class="feature-text">${item.ParentTitle}</div>
+				<div class="feature-text">${getParentTitle(item.ID, refObj)}</div>
 		</div>`
 
 // render row 
@@ -57,25 +51,9 @@ const renderRows = recursiveWrapper(CONFIG.itemsPerRow, `<div class="row">`)
 const renderPages = recursiveWrapper(CONFIG.rowsPerPage, `<div class="canvas">`)
 
 // generateHtml
-const generateHtml = (items: PbiDto[]): string => renderPages(renderRows(items.map(renderItem))).join(``)
+const generateHtml = ([keys, refObj]: App.RenderingArgs): string => renderPages(renderRows(keys.map(key => renderItem(refObj[key], refObj)))).join(``)
 
-const addFeatureTag = (data: PbiDto[]): PbiDto[] => {
-	let remeberedTitle = ''
-
-	// TODO: BUG: better mapping regardles order 
-	return data.map(item => {
-		if(item["Work Item Type"] === `Feature`){
-			remeberedTitle = item.Title
-			item.ParentTitle = ''
-		} else {
-			item.ParentTitle = remeberedTitle
-		}
-
-		return item
-	})
-}
-
-export const renderPrintView = (items: PbiDto[], printContainer: HTMLElement): void => {
-  printContainer.innerHTML = generateHtml(addFeatureTag(items))
+export const renderPrintView = (renderArgs: App.RenderingArgs, printContainer: HTMLElement): void => {
+  printContainer.innerHTML = generateHtml(renderArgs)
 }
 
