@@ -41,7 +41,7 @@ const renderItem = (item:App.PbiDto, refObj: App.ReferenceObj): string =>
 				</div>
 				<div class="title">${item.Title}</div>
 				<div class="feature-text">${item.Parent}</div>
-				<div class="feature-text">${getParentTitle(item.ID, refObj)}</div>
+				<div class="feature-text">${getParentTitle(item.Parent, refObj)}</div>
 		</div>`
 
 // render row 
