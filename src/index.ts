@@ -20,4 +20,8 @@ const main = () => {
   }
 }
 
-main()
+try {
+  main()
+} catch(e) {
+  alert(`Unexpected error: ${e.message}`)
+}
