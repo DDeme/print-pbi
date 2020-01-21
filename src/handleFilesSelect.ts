@@ -11,12 +11,12 @@ const parseCsvFiles = async (texts: string[]) => {
   return Promise.all(funcs.map(f => f()))
 }
 
-export const handleFilesSelect = async(evt: Event, printContainer: HTMLElement): Promise<undefined> => {
+export const handleFilesSelect = async(evt: Event, printContainer: HTMLElement, fileUpload: HTMLInputElement): Promise<undefined> => {
   if (evt.target === null) {
     return
   }  
   
-  const files:FileList | null = (<HTMLInputElement>evt.target).files; // FileList object
+  const files:FileList | null = (<HTMLInputElement>evt.target).files
     
   if (files === null){
     return
@@ -26,7 +26,8 @@ export const handleFilesSelect = async(evt: Event, printContainer: HTMLElement):
   const csvFiles = await parseCsvFiles(textFiles)
   // do validation 
 
-  renderPrintView(csvFiles[0], printContainer);
-  printView(window);
+  renderPrintView(csvFiles[0], printContainer)
+  printView(window)
+  fileUpload.value = ''
   return 
 }
