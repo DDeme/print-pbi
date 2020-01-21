@@ -30,7 +30,7 @@ export const recursiveWrapper = (numOfItems: number, openTag = `<div>`, closingT
 }
 
 const getParentTitle = (key: string, refObj: App.ReferenceObj): App.BasicValue => 
-	refObj[key]['Title'] ? refObj[key] && refObj[key]['Title'] : `` 
+	refObj[key] && refObj[key]['Title'] ? refObj[key]['Title'] : `` 
 
 // render item
 const renderItem = (item:App.PbiDto, refObj: App.ReferenceObj): string => 
