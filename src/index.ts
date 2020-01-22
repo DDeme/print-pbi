@@ -8,20 +8,23 @@ const main = () => {
   const printButton = document.getElementById('print-btn') as HTMLElement
   const fileUpload = document.getElementById('file-upload') as HTMLInputElement
   const printContainer = document.getElementById('print') as HTMLElement
-  
+
   // checking for browser support
   if (isBrowserSupported()) {
-    printButton.addEventListener('click', () => printView(window), false);
-    fileUpload.addEventListener('change', (e) => handleFilesSelect(e, printContainer, fileUpload), false);
+    printButton.addEventListener('click', () => printView(window), false)
+    fileUpload.addEventListener(
+      'change',
+      e => handleFilesSelect(e, printContainer, fileUpload),
+      false
+    )
     app.classList.remove('hidden')
-  }
-  else {
+  } else {
     unsupported.classList.remove('hidden')
   }
 }
 
 try {
   main()
-} catch(e) {
+} catch (e) {
   alert(`Unexpected error: ${e.message}`)
 }
