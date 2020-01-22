@@ -40,7 +40,7 @@ const getParentTitle = (
   key: App.BasicValue,
   refObj: App.ReferenceObj
 ): App.BasicValue =>
-  refObj[key] && refObj[key]['Title'] ? refObj[key]['Title'] : ``
+  key !== null && refObj[key] && refObj[key]['Title'] ? refObj[key]['Title'] : ``
 
 // render item
 const renderItem = (item: App.PbiDto, refObj: App.ReferenceObj): string =>
