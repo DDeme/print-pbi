@@ -6,6 +6,7 @@ const DefaultRowValue: App.PbiDto = {
   Title: ``,
   [`Work Item Type`]: ``,
   [`Story Point Est`]: ``,
+  Priority: ``,
 }
 
 // TODO: improve don´t do double loop

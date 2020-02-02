@@ -12,6 +12,7 @@ declare namespace App {
     [`Work Item Type`]: `` | null | WorkItemType
     [`Story Point Est`]: BasicValue
     Parent: BasicValue
+    Priority: BasicValue
   }
 
   export interface ReferenceObj {
