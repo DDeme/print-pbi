@@ -72,19 +72,20 @@ $row-in-title: 7;
 
   .main-title {
     width: 100%;
-    line-height: 1.5rem;
-    height: 1.5rem;
+    line-height: 1.2rem;
+    height: 1.2rem;
   }
 
   .id {
     @extend %defaultText;
-    width: calc(100% / 2);
+    width: 60%;
     float: left;
     text-align: left;
   }
 
   .points {
     @extend .id;
+    width: 40%;
     text-align: right;
   }
 
