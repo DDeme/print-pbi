@@ -23,6 +23,6 @@
     "gh-pages": "^1.2.0",
     "parcel-bundler": "^1.12.4",
     "prettier": "1.19.1",
-    "sass": "^1.25.0"
+    "sass": "^1.34.0"
   }
 }
