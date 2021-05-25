@@ -37,9 +37,18 @@ $row-in-title: 7;
   }
   .row {
     @extend %cuttinBorder;
-    height: calc(100% / 3);
+    height: calc((100% + 10mm) / 3);
     &:last-child .item {
       border-bottom-width: 0;
+    }
+    &:first-child .item {
+      padding-top: 0;
+    }
+    & .item:first-child {
+      padding-left: 0;
+    }
+    & .item:last-child {
+      padding-right: 0;
     }
   }
 
