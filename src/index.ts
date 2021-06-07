@@ -11,7 +11,7 @@ const main = () => {
 
   // checking for browser support
   if (isBrowserSupported()) {
-    printButton.addEventListener('click', () => printView(window), false)
+    printButton.addEventListener('click', () => printView(), false)
     fileUpload.addEventListener(
       'change',
       e => handleFilesSelect(e, printContainer, fileUpload),
