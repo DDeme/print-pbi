@@ -25,32 +25,20 @@ const CONFIG: PrintConfig = {
   },
 }
 
-type RecursiveWrapperAccumulator = [string[], string]
-
 export const recursiveWrapper = (
   numOfItems: number,
-  openTag = `<div>`,
-  closingTag = `</div>`
-) => (items: string[]): string[] => {
-  const rendered = items.reduce(
-    (acc: RecursiveWrapperAccumulator, item, i) => {
-      if (i % numOfItems === 0) {
-        acc[1] += openTag
-      }
-      acc[1] += item
+  className: string
+) => (items: HTMLElement[]): HTMLElement[] => {
+  const leftOver = items.length % numOfItems
+  const numOfWrappers = ((items.length - leftOver) / numOfItems) + (leftOver > 0 ? 1 : 0)
+  const wrappers: HTMLElement[] = []
+  for (let i: number = 1; i < numOfWrappers;i++) {
+    const max = (i * numOfItems)
+    const min = max - numOfItems
+    wrappers.push(createElementWithChildren(className, items.slice(min, max)))
+  }
 
-      if (i % numOfItems === numOfItems - 1 || i === items.length - 1) {
-        acc[1] += closingTag
-        acc[0].push(acc[1])
-        acc[1] = ``
-      }
-
-      return acc
-    },
-    [[], ``]
-  )[0]
-
-  return rendered
+  return wrappers
 }
 
 const getParentTitle = (
@@ -62,38 +50,68 @@ const getParentTitle = (
     : ``
 
 // render item
-
 const getDelimiter = (...args: App.BasicValue[]): string =>
   args.some(v => v === null || v === ``) ? `` : ` - `
 
-const renderItem = (item: App.PbiDto, refObj: App.ReferenceObj): string =>
-  `<div class="item">
-				<div class="main-title">
-					<div class="id">${item.ID}${getDelimiter(item.ID, item.Priority)}${
-    item.Priority
-  }</div>
-					<div class="points">${item[`Story Point Est`]}</div>
-				</div>
-				<div class="title">${item.Title}</div>
-				<div class="feature-text">${item.Parent}</div>
-				<div class="feature-text">${getParentTitle(item.Parent, refObj)}</div>
-		</div>`
+
+const createElementWithChildren = (className = ``, children: Array<HTMLElement | string> = [], el: string = `div`): HTMLElement => {
+  const doc: HTMLElement = document.createElement(el)
+  doc.className = className
+  children.forEach(child => {
+
+    if (typeof child === `string` && child !== ``) {
+      const childEl: Text = document.createTextNode(child)
+      doc.appendChild(childEl)
+    }
+    if (typeof child === `object`) {
+      doc.appendChild(child)
+    }
+
+  })
+  
+  return doc
+}
+
+
+const renderItem = (item: App.PbiDto, refObj: App.ReferenceObj): HTMLElement => {
+  
+  const mainTitleEl: HTMLElement = createElementWithChildren(`main-title`)
+  const idEl = createElementWithChildren(`id`, [`${item.ID}${getDelimiter(item.ID, item.Priority)}${item.Priority}`])
+  const pointsEl = createElementWithChildren(`points`, [`${item[`Story Point Est`]}`])
+  mainTitleEl.appendChild(idEl)
+  mainTitleEl.appendChild(pointsEl)
+
+  const itemEl: HTMLElement = createElementWithChildren(`item`, [mainTitleEl])
+  const titleEl = createElementWithChildren(`title`, [`${item.Title}`])
+ 
+  itemEl.appendChild(titleEl)
+
+  const parentFeatureID = createElementWithChildren(`feature-text`, [`${item.Parent}`])
+  const parentFeatureTitle = createElementWithChildren(`feature-text`, [`${getParentTitle(item.Parent, refObj)}`])
+
+  itemEl.appendChild(parentFeatureID)
+  itemEl.appendChild(parentFeatureTitle)
+  return itemEl
+}
 
 // render row
-const renderRows = recursiveWrapper(CONFIG.itemsPerRow, `<div class="row">`)
+const renderRows = recursiveWrapper(CONFIG.itemsPerRow, `row`)
 
 // render page
-const renderPages = recursiveWrapper(CONFIG.rowsPerPage, `<div class="canvas">`)
+const renderPages = recursiveWrapper(CONFIG.rowsPerPage, `canvas`)
 
 // generateHtml
-const generateHtml = ([keys, refObj]: App.RenderingArgs): string =>
-  renderPages(
-    renderRows(keys.map(key => renderItem(refObj[key], refObj)))
-  ).join(``)
+const generateHtml = ([keys, refObj]: App.RenderingArgs): HTMLElement[] =>
+ renderPages(renderRows(keys.map(key => renderItem(refObj[key], refObj))))
+  
 
 export const renderPrintView = (
   renderArgs: App.RenderingArgs,
   printContainer: HTMLElement
 ): void => {
-  printContainer.innerHTML = generateHtml(renderArgs)
+  const toPrint = generateHtml(renderArgs)
+  printContainer.innerHTML = ""
+  toPrint.forEach((el) => {
+    printContainer.appendChild(el)
+  })
 }

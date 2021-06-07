@@ -17,7 +17,7 @@ export const mapCsvToModel = (lines: any[]): App.RenderingArgs => {
     const key = line.hasOwnProperty(UNIQUE_FIELD) ? line[UNIQUE_FIELD] : ``
     if (key !== ``) {
       keys.push(key)
-      refObj[key] = Object.assign(DefaultRowValue, line)
+      refObj[key] = Object.assign({}, DefaultRowValue, line)
     }
   })
   return [keys, refObj]

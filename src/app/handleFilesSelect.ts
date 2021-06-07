@@ -31,9 +31,8 @@ export const handleFilesSelect = async (
   const textFiles = await readFilesAsText(files)
   const csvFiles = await parseCsvFiles(textFiles)
   // do validation
-
   renderPrintView(mapCsvToModel(csvFiles[0]), printContainer)
-  printView(window)
+  printView()
   fileUpload.value = ''
   return
 }

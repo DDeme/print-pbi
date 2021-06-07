@@ -1,4 +1,4 @@
 // trigger priting window
-export const printView = (window: Window): void => {
+export const printView = (): void => {
   window.print()
 }
