@@ -32,7 +32,16 @@ jobs:
           node-version: '10.x'
 
       - name: Install Dependencies
-        run: npm install
+        run: yarn install
         
       - name: Run build
-        run: npm run deploy
+        run: yarn build
+      
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
