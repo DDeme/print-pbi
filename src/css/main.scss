@@ -1,4 +1,25 @@
 @import 'reset.scss';
+
+$bg-color-light: rgb(229, 231, 235);
+$card-bg-color-light: lighten($bg-color-light, 5%);
+$primary-color-light: rgb(29, 78, 216);
+
+$bg-color-dark: rgb(33, 33, 33);
+$card-bg-color-dark: lighten($bg-color-dark, 5%);
+:root {
+  color-scheme: light dark;
+  --bg-color: #{$bg-color-light};
+  --card-bg-color: #{$card-bg-color-light};
+  --primary-color: #{$primary-color-light};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #{$bg-color-dark};
+    --card-bg-color: #{$card-bg-color-dark};
+  }
+}
+
 html {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
@@ -13,7 +34,7 @@ body {
 }
 
 .app {
-  background-color: rgb(229, 231, 235);
+  background-color: var(--bg-color);
 }
 
 .container-app {
@@ -28,7 +49,7 @@ body {
   border-radius: 0.25rem;
   padding: 2.5rem;
   max-width: 28rem;
-  background-color: rgb(243, 244, 246);
+  background-color: var(--card-bg-color);
 }
 
 .feature-image {
@@ -57,7 +78,7 @@ body {
   display: flex;
   text-align: center;
   padding: 0.5rem 1rem;
-  background-color: rgb(29, 78, 216);
+  background-color: var(--primary-color);
   font-weight: 600;
   margin-top: 1.25rem;
   border: 0;
