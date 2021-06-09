@@ -1,34 +1,4 @@
-interface PrintConfig {
-  rowsPerPage: number
-  itemsPerRow: number
-  page: {
-    size: PAGE_SIZE
-    orientation: PAGE_ORIENTATION
-  }
-}
-
-enum PAGE_ORIENTATION {
-  PORTRAIT = `portrait`,
-  LANDSCAPE = `landscape`,
-}
-
-enum PAGE_SIZE {
-  A4 = `A4`,
-}
-
-const CONFIG: PrintConfig = {
-  rowsPerPage: 3,
-  itemsPerRow: 3,
-  page: {
-    size: PAGE_SIZE.A4,
-    orientation: PAGE_ORIENTATION.LANDSCAPE,
-  },
-}
-
-export const recursiveWrapper = (
-  numOfItems: number,
-  className: string
-) => (items: HTMLElement[]): HTMLElement[] => {
+export const recursiveWrapper = (className: string) => (items: HTMLElement[], numOfItems: number): HTMLElement[] => {
   const leftOver = items.length % numOfItems
   const numOfWrappers = ((items.length - leftOver) / numOfItems) + (leftOver > 0 ? 1 : 0)
   const wrappers: HTMLElement[] = []
@@ -95,21 +65,22 @@ const renderItem = (item: App.PbiDto, refObj: App.ReferenceObj): HTMLElement => 
 }
 
 // render row
-const renderRows = recursiveWrapper(CONFIG.itemsPerRow, `row`)
+const renderRows = recursiveWrapper(`row`)
 
 // render page
-const renderPages = recursiveWrapper(CONFIG.rowsPerPage, `canvas`)
+const renderPages = recursiveWrapper(`canvas`)
 
 // generateHtml
-const generateHtml = ([keys, refObj]: App.RenderingArgs): HTMLElement[] =>
- renderPages(renderRows(keys.map(key => renderItem(refObj[key], refObj))))
+const generateHtml = ([keys, refObj]: App.RenderingArgs, [rows, cols]: [number, number]): HTMLElement[] =>
+ renderPages(renderRows(keys.map(key => renderItem(refObj[key], refObj)), rows), cols)
   
 
 export const renderPrintView = (
   renderArgs: App.RenderingArgs,
-  printContainer: HTMLElement
+  printContainer: HTMLElement,
+  rowscols: [number, number], 
 ): void => {
-  const toPrint = generateHtml(renderArgs)
+  const toPrint = generateHtml(renderArgs, rowscols)
   printContainer.innerHTML = ""
   toPrint.forEach((el) => {
     printContainer.appendChild(el)

@@ -9,6 +9,11 @@ $page-orientation: landscape;
 $page-size: A4;
 $row-in-title: 7;
 
+:root {
+  --items-per-row: #{$items-per-row};
+  --rows-per-page: #{$rows-per-page};
+}
+
 @media only print {
   .app {
     display: none;
@@ -37,7 +42,7 @@ $row-in-title: 7;
   }
   .row {
     @extend %cuttinBorder;
-    height: calc((100% + 10mm) / 3);
+    height: calc((100% + 10mm) / var(--items-per-row));
     &:last-child .item {
       border-bottom-width: 0;
     }
@@ -61,7 +66,7 @@ $row-in-title: 7;
       border-right-width: 0;
     }
     height: 100%;
-    width: calc(100% / #{$items-per-row});
+    width: calc(100% / var(--rows-per-page));
     overflow: hidden;
     float: left;
   }

@@ -16,7 +16,9 @@ const parseCsvFiles = async (texts: string[]) => {
 export const handleFilesSelect = async (
   evt: Event,
   printContainer: HTMLElement,
-  fileUpload: HTMLInputElement
+  fileUpload: HTMLInputElement,
+  row: number = 3,
+  col: number = 3
 ): Promise<undefined> => {
   if (evt.target === null) {
     return
@@ -31,7 +33,7 @@ export const handleFilesSelect = async (
   const textFiles = await readFilesAsText(files)
   const csvFiles = await parseCsvFiles(textFiles)
   // do validation
-  renderPrintView(mapCsvToModel(csvFiles[0]), printContainer)
+  renderPrintView(mapCsvToModel(csvFiles[0]), printContainer, [row, col])
   printView()
   fileUpload.value = ''
   return
