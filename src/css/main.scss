@@ -3,14 +3,19 @@
 $bg-color-light: rgb(229, 231, 235);
 $card-bg-color-light: lighten($bg-color-light, 5%);
 $primary-color-light: rgb(29, 78, 216);
+$primary-accent-color-light: rgb(96, 165, 250);
+$shadow-color-light: rgb(84, 84, 84);
 
 $bg-color-dark: rgb(33, 33, 33);
 $card-bg-color-dark: lighten($bg-color-dark, 5%);
+
 :root {
   color-scheme: light dark;
   --bg-color: #{$bg-color-light};
   --card-bg-color: #{$card-bg-color-light};
   --primary-color: #{$primary-color-light};
+  --primary-accent-color: #{$primary-color-light};
+  --shadow-color-light: #{$shadow-color-light};
 }
 
 @media (prefers-color-scheme: dark) {
@@ -71,6 +76,10 @@ body {
   margin-bottom: 1.25rem;
 }
 
+input[type='range'] {
+  width: 100%;
+}
+
 .button {
   width: 100%;
   text-transform: uppercase;
@@ -84,7 +93,7 @@ body {
   border: 0;
 
   &:hover {
-    background-color: rgb(96, 165, 250);
+    background-color: var(--primary-accent-color);
     cursor: pointer;
   }
   span {
@@ -93,7 +102,7 @@ body {
 }
 
 .shadow {
-  box-shadow: 5px 5px 8px -5px #545454;
+  box-shadow: 5px 5px 8px -5px var(--shadow-color-light);
 }
 
 .hidden {
